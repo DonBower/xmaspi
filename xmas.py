@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import LCD1602
 import time
 from datetime import datetime
@@ -75,7 +75,7 @@ def setup():
         nameOffset = (16 - nameLenght) / 2
         printList = ' ' * nameOffset + thisGuest + '                '
         printList = printList[:16]
-        print printList
+        print(printList)
 
         LCD1602.write(0, 0, 'Merry Christmas ')
         LCD1602.write(1, 1, printList)

@@ -105,14 +105,15 @@ git config --global user.email "Don.Bower@outlook.com"
 Next Create a *Developer* directory, and clone this repository from there.  The *Developer* directory is standard practice for modern developers. Some use lowercase for the name, but since on the RaspberryPi, and my Mac, all the other preloaded directories are capitalized, (i.e. Documents, Pictures, etc...) I'll follow form. <br />
 
 ```
-cd ~
+mkdir ~/Developer
+cd ~/Developer
 git clone git@github.com:DonBower/xmaspi.git
 ```
 
 If you need updates from github, use git pull:
 
 ```
-cd ~/xmaspi
+cd ~/Developer/xmaspi
 git pull
 ```
 
@@ -163,31 +164,30 @@ Your output will look similar to the following:
 ```
      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
 00:          -- -- -- -- -- -- -- -- -- -- -- -- --
-10: 10 -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-20: -- -- -- -- -- -- -- -- -- 29 -- -- -- -- -- --
+10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+20: -- -- -- -- -- -- -- 27 -- -- -- -- -- -- -- --
 30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-50: -- -- -- 53 -- -- -- -- -- -- -- -- -- -- -- 5f
-60: -- 61 -- -- -- -- -- -- -- -- -- -- -- -- -- --
-70: -- -- -- -- -- -- -- 77                         
+50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+70: -- -- -- -- -- -- -- --                         
 ```
 all of the non "--" entries represent a device detected.
 
+27 is the 16x2 display
 
 # Install CircuitPython Libraries for the sensors:
 
 ```
-sudo pip3 install adafruit-circuitpython-gps \
- adafruit-circuitpython-bmp3xx \
- adafruit-circuitpython-hts221 \
- adafruit-circuitpython-tsl2591 \
- adafruit-circuitpython-ltr390 \
- adafruit-circuitpython-scd30
+sudo pip3 install \
+     adafruit_character_lcd
+     adafruit_mcp230xx \
+     adafruit_bus_device
 ```
 
 Test Which sensors are installed:
 ```
-python3 ~/xmaspi/Pi/sensortest.py
+python3 ~/Developer/xmaspi/Pi/sensortest.py
 ```
 
 # Install TFT Display as the console.
