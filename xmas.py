@@ -3,7 +3,8 @@ from rpi_lcd import LCD
 import time
 from datetime import datetime
 import math
-
+from datetime import date
+import holidays
 
 def setup():
     lcd=LCD()
