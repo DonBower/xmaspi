@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-from rpi_lcd import LCD
+import LCD1602
 import time
 from datetime import datetime
 import math
-from datetime import date
-import holidays
+# from datetime import date
+# import holidays
 
 def setup():
-    lcd=LCD()
-    lcd.text('Greetings!!', 1)
-    lcd.text(' from Don Bower', 2)
+    LCD1602.init(0x27)   # init(slave address, background light)
+    LCD1602.write(0, 0, 'Greetings!!')
+    LCD1602.write(1, 1, 'from Don Bower')
     time.sleep(2.5)
 
     now = datetime.now()
@@ -45,8 +45,8 @@ def setup():
         if days > 99:
             line0message = str(days) + " Days "
 
-        lcd.text(line0message, 1)
-        lcd.text(' until Christmas', 2)
+        LCD1602.write(0, 0, line0message)
+        LCD1602.write(1, 0, ' until Christmas')
         time.sleep(.2)
 
     thisGuestNumber = 0
@@ -78,8 +78,8 @@ def setup():
         printList = printList[:16]
         print(printList)
 
-        lcd.text('Merry Christmas ', 1)
-        lcd.text(printList, 2)
+        LCD1602.write(0, 0, 'Merry Christmas ')
+        LCD1602.write(1, 0, printList)
 
         thisGuestNumber = thisGuestNumber + 1
 
@@ -108,13 +108,13 @@ def setup():
             strHours = " " + strHours
 
         line0message = str(days) + " Days " + strHours + ":" + strMinutes + ":" + strSeconds
-        lcd.text(line0message, 1)
-        lcd.text(' until New Years', 2)
+        LCD1602.write(0, 0, line0message)
+        LCD1602.write(1, 0, ' until New Years')
         time.sleep(.2)
 
 def destroy():
-    lcd.text('Good bye,       ', 1)
-    lcd.text(' for now...     ', 2)
+    LCD1602.write(0, 0, 'Good bye,       ')
+    LCD1602.write(1, 0, ' for now...     ')
     pass
 
 if __name__ == "__main__":
