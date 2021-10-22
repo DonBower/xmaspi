@@ -46,7 +46,7 @@ def setup():
             line0message = str(days) + " Days "
 
         LCD1602.write(0, 0, line0message)
-        LCD1602.write(1, 1, ' until Christmas')
+        LCD1602.write(1, 1, 'until Christmas')
         time.sleep(.2)
 
     thisGuestNumber = 0
@@ -109,7 +109,7 @@ def setup():
 
         line0message = str(days) + " Days " + strHours + ":" + strMinutes + ":" + strSeconds
         LCD1602.write(0, 0, line0message)
-        LCD1602.write(1, 1, ' until New Years')
+        LCD1602.write(1, 1, 'until New Years')
         time.sleep(.2)
 
 def destroy():
