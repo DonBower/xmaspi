@@ -2,14 +2,6 @@ from datetime import date
 import holidays
 
 myHolidays = holidays.UnitedStates(years=[2021,2022],observed=False)
-myHolidays.pop_named("Martin Luther King")
-myHolidays.pop_named("Washington")
-myHolidays.pop_named("Columbus Day")
-myHolidays.pop_named("Memorial")
-myHolidays.pop_named("Juneteenth")
-myHolidays.pop_named("Independence")
-myHolidays.pop_named("Labor")
-myHolidays.pop_named("Veterans")
 myHolidays[date(2021, 4,  4)] = "Easter" 
 myHolidays[date(2022, 4, 17)] = "Easter" 
 myHolidays[date(2023, 4,  9)] = "Easter" 
@@ -22,6 +14,14 @@ myHolidays[date(2029, 4,  1)] = "Easter"
 myHolidays[date(2030, 4, 21)] = "Easter" 
 myHolidays[date(2031, 4, 13)] = "Easter" 
 myHolidays[date(2032, 3, 28)] = "Easter" 
+myHolidays.pop_named("Martin Luther King")
+myHolidays.pop_named("Washington")
+myHolidays.pop_named("Columbus Day")
+myHolidays.pop_named("Memorial")
+myHolidays.pop_named("Juneteenth")
+myHolidays.pop_named("Independence")
+myHolidays.pop_named("Labor")
+myHolidays.pop_named("Veterans")
 
 
 for date, name in sorted(myHolidays.items()):
