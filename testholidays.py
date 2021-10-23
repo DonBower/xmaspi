@@ -11,6 +11,7 @@ myHolidays.pop_named("Juneteenth")
 myHolidays.pop_named("Independence")
 myHolidays.pop_named("Labor")
 myHolidays.pop_named("Veterans")
+myHolidays[date(2021, 7, 13)] = "Ninja Turtle Day"
 
 
 for date, name in sorted(myHolidays.items()):
