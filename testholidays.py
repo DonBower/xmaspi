@@ -10,7 +10,18 @@ myHolidays.pop_named("Juneteenth")
 myHolidays.pop_named("Independence")
 myHolidays.pop_named("Labor")
 myHolidays.pop_named("Veterans")
-myHolidays[date(2021, 7, 13),date(2022, 7, 13)] = "Ninja Turtle Day"
+myHolidays[date(2021, 7, 13)] = "Ninja Turtle Day"
+myHolidays[date(2022, 4, 17)] = "Easter" 
+myHolidays[date(2023, 4,  9)] = "Easter" 
+myHolidays[date(2024, 3, 31)] = "Easter" 
+myHolidays[date(2025, 4, 20)] = "Easter" 
+myHolidays[date(2026, 4,  5)] = "Easter" 
+myHolidays[date(2027, 3, 28)] = "Easter" 
+myHolidays[date(2028, 4, 16)] = "Easter" 
+myHolidays[date(2029, 4,  1)] = "Easter" 
+myHolidays[date(2030, 4, 21)] = "Easter" 
+myHolidays[date(2031, 4, 13)] = "Easter" 
+myHolidays[date(2032, 3, 28)] = "Easter" 
 
 
 for date, name in sorted(myHolidays.items()):
