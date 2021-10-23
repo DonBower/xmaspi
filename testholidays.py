@@ -1,19 +1,34 @@
 from datetime import date
 import holidays
+easterDates = {}
+easterDates["2021"] = [4,4]
+easterDates["2022"] = [4,17]
+easterDates["2023"] = [4,9]
+easterDates["2024"] = [3,31]
+easterDates["2025"] = [4,20]
+easterDates["2026"] = [4,5]
+easterDates["2027"] = [3,28]
+easterDates["2028"] = [4,16]
+easterDates["2029"] = [4,1]
+easterDates["2030"] = [4,21]
+easterDates["2031"] = [4,13]
+easterDates["2032"] = [3,28]
+
 
 myHolidays = holidays.UnitedStates(years=[2021,2022],observed=False)
+nextEaster = easterDates["2022"]
 myHolidays[date(2021, 4,  4)] = "Easter" 
-myHolidays[date(2022, 4, 17)] = "Easter" 
-myHolidays[date(2023, 4,  9)] = "Easter" 
-myHolidays[date(2024, 3, 31)] = "Easter" 
-myHolidays[date(2025, 4, 20)] = "Easter" 
-myHolidays[date(2026, 4,  5)] = "Easter" 
-myHolidays[date(2027, 3, 28)] = "Easter" 
-myHolidays[date(2028, 4, 16)] = "Easter" 
-myHolidays[date(2029, 4,  1)] = "Easter" 
-myHolidays[date(2030, 4, 21)] = "Easter" 
-myHolidays[date(2031, 4, 13)] = "Easter" 
-myHolidays[date(2032, 3, 28)] = "Easter" 
+myHolidays[date(2022, nextEaster[0], nextEaster[1])] = "Easter" 
+# myHolidays[date(2023, 4,  9)] = "Easter" 
+# myHolidays[date(2024, 3, 31)] = "Easter" 
+# myHolidays[date(2025, 4, 20)] = "Easter" 
+# myHolidays[date(2026, 4,  5)] = "Easter" 
+# myHolidays[date(2027, 3, 28)] = "Easter" 
+# myHolidays[date(2028, 4, 16)] = "Easter" 
+# myHolidays[date(2029, 4,  1)] = "Easter" 
+# myHolidays[date(2030, 4, 21)] = "Easter" 
+# myHolidays[date(2031, 4, 13)] = "Easter" 
+# myHolidays[date(2032, 3, 28)] = "Easter" 
 myHolidays.pop_named("Martin Luther King")
 myHolidays.pop_named("Washington")
 myHolidays.pop_named("Columbus Day")
@@ -39,3 +54,8 @@ for date, name in sorted(myHolidays.items()):
 # 2021-09-06 Labor Day
 # 2021-10-11 Columbus Day
 # 2021-11-11 Veterans Day
+
+
+myEaster=[
+  {2021,4,4},
+  {2022,4,17}]
