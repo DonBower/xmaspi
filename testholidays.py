@@ -10,7 +10,7 @@ myHolidays.pop_named("Juneteenth")
 myHolidays.pop_named("Independence")
 myHolidays.pop_named("Labor")
 myHolidays.pop_named("Veterans")
-myHolidays[date(2021, 7, 13)] = "Ninja Turtle Day"
+myHolidays[date(2021, 4,  4)] = "Easter" 
 myHolidays[date(2022, 4, 17)] = "Easter" 
 myHolidays[date(2023, 4,  9)] = "Easter" 
 myHolidays[date(2024, 3, 31)] = "Easter" 
