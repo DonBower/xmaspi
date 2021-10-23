@@ -1,11 +1,7 @@
 from datetime import date
 import holidays
-us_holidays = holidays.UnitedStates(observed=False)
-
-# holidays.UnitedStates[date(2021, 7, 13)] = "Ninja Turtle Day"
 
 myHolidays = holidays.UnitedStates(years=[2021,2022],observed=False)
-myHolidays = us_holidays(years=[2021,2022])
 myHolidays.pop_named("Martin Luther King")
 myHolidays.pop_named("Washington")
 myHolidays.pop_named("Columbus Day")
