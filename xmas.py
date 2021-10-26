@@ -20,7 +20,7 @@ def printMsg(line0, line1):
 
   if LCDScreen:
     LCD1602.write(0, 0, line0)
-    LCD1602.write(1, 0, line1)
+    LCD1602.write(0, 1, line1)
   else:
     print(line0)
     print(line1)
