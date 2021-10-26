@@ -1,126 +1,131 @@
-#!/usr/bin/env python3
-import LCD1602
-import time
-from datetime import datetime
+LCDScreen = True
+try:
+  import LCD1602
+except:
+    LCDScreen = False
+
+from datetime import date, time
+import datetime
 import math
-# from datetime import date
-# import holidays
+from time import sleep
+import holidays
 
-def setup():
+def printMsg(line0, line1):
+  global LCDScreen
+  if line0 == "Happy Christmas Day":
+    line0 = "Merry Christmas"
+
+  if line0 == "Happy Test Day":
+    line0 = "Merry Test Day"
+
+  if LCDScreen:
+    LCD1602.write(0, 0, line0)
+    LCD1602.write(1, 1, line1)
+  else:
+    print(line0)
+    print(line1)
+    print("")
+    sleep(5)
+
+sleepTime = 2
+
+if LCDScreen:
+  try:
     LCD1602.init(0x27, 1)   # init(slave address, background light)
-    LCD1602.write(0, 0, 'Greetings!!')
-    LCD1602.write(1, 1, 'from Don Bower')
-    time.sleep(2.5)
+  except:
+      LCDScreen = False
 
-    now = datetime.now()
-    thisYear = now.year
-    nextYear = thisYear + 1
-    christmas = datetime.strptime("12/25/" + str(thisYear), "%m/%d/%Y")
-    christmasplusone = datetime.strptime("12/25/" + str(thisYear), "%m/%d/%Y")
-    newyears = datetime.strptime("12/25/" + str(nextYear), "%m/%d/%Y")
-    print(now)
-    print(christmas)
-    print(newyears)
-    while (now < christmas):
-        now = datetime.now()
-        diff = christmas - now
-        days = diff.days
-        seconds = int(diff.seconds)
-        hours = int(math.floor(seconds / 3600))
-        minutes = int(math.floor((seconds - (hours * 3600)) / 60))
-        secs = seconds - (hours * 3600) - (minutes * 60)
-        strHours = str(hours)
-        strMinutes = str(minutes)
-        strSeconds = str(secs)
+printMsg('Greetings!!', 'from Don Bower')
+sleep(2.5)
 
-        if secs < 10:
-            strSeconds = "0" + strSeconds
-        if minutes < 10:
-            strMinutes = "0" + strMinutes
-        if hours < 10:
-            strHours = " " + strHours
+now = datetime.datetime.now()
+thisYear = now.year
+nextYear = thisYear + 1
+midnight = datetime.datetime.time
+guestList = ["Don", "Sandy", "Erica", "Hector", "Julian", "Alexandra"]
 
-        line0message = str(days) + " Days " + strHours + ":" + strMinutes + ":" + strSeconds
+easterDates = {}
+easterDates["2021"] = [4,4]
+easterDates["2022"] = [4,17]
+easterDates["2023"] = [4,9]
+easterDates["2024"] = [3,31]
+easterDates["2025"] = [4,20]
+easterDates["2026"] = [4,5]
+easterDates["2027"] = [3,28]
+easterDates["2028"] = [4,16]
+easterDates["2029"] = [4,1]
+easterDates["2030"] = [4,21]
+easterDates["2031"] = [4,13]
+easterDates["2032"] = [3,28]
 
-        if days > 99:
-            line0message = str(days) + " Days "
+myHolidays = holidays.UnitedStates(years=[thisYear,nextYear],observed=False)
+nextEaster = easterDates[str(nextYear)]
+myHolidays.pop_named("Martin Luther King")
+myHolidays.pop_named("Washington")
+myHolidays.pop_named("Columbus Day")
+myHolidays.pop_named("Memorial")
+myHolidays.pop_named("Juneteenth")
+myHolidays.pop_named("Independence")
+myHolidays.pop_named("Labor")
+myHolidays.pop_named("Veterans")
+# print("Remove thisNewYears")
+# print(date(thisYear,1,1))
 
-        LCD1602.write(0, 0, line0message)
-        LCD1602.write(1, 1, 'until Christmas')
-        time.sleep(.2)
+myHolidays.pop(datetime.date(thisYear, 1,  1))
+myHolidays[datetime.date(thisYear, 10,  31)] = "Halloween" 
+myHolidays[datetime.date(nextYear, nextEaster[0], nextEaster[1])] = "Easter"
+myHolidays[datetime.date(nextYear, 2,  14)] = "St. Valentine's Day"
+#myHolidays[datetime.date(thisYear, 10,  26)] = "Test Day"
 
-    thisGuestNumber = 0
-    guestList = ["Don", "Sandy", "Erica", "Hector", "Julian", "Alexandra"]
+def getFutureTime(thisHolidayDate):
+  thisMoment = datetime.datetime.now()
+  holidayDateTime = datetime.datetime(thisHolidayDate.year, thisHolidayDate.month, thisHolidayDate.day) 
+  timeDifference = holidayDateTime - thisMoment
+  return timeDifference
 
-    while (now < christmasplusone):
-        now = datetime.now()
-        diff = christmas - now
-        days = diff.days
-        seconds = int(diff.seconds)
-        hours = int(math.floor(seconds / 3600))
-        minutes = int(math.floor((seconds - (hours * 3600)) / 60))
-        secs = seconds - (hours * 3600) - (minutes * 60)
-        strHours = str(hours)
-        strMinutes = str(minutes)
-        strSeconds = str(secs)
+for thisHolidayDate, thisHolidayName in sorted(myHolidays.items()):
+  print(thisHolidayDate, thisHolidayName)
 
-        if secs < 10:
-            strSeconds = "0" + strSeconds
-        if minutes < 10:
-            strMinutes = "0" + strMinutes
-        if hours < 10:
-            strHours = " " + strHours
+for thisHolidayDate, thisHolidayName in sorted(myHolidays.items()):
+  getFutureTime(thisHolidayDate)
+  futureTime = getFutureTime(thisHolidayDate)
 
-        thisGuest = guestList[thisGuestNumber]
-        nameLenght = len(thisGuest)
-        nameOffset = (16 - nameLenght) / 2
-        printList = ' ' * nameOffset + thisGuest + '                '
-        printList = printList[:16]
-        print(printList)
+  futureDays = int(futureTime.days)
 
-        LCD1602.write(0, 0, 'Merry Christmas ')
-        LCD1602.write(1, 1, printList)
+  while futureDays > 0:
+    if futureDays < 100:
+      futureSeconds = futureTime.seconds
+      futureHours = int(math.floor(futureSeconds / 3600))
+      futureMinutes = int(math.floor((futureSeconds - (futureHours * 3600)) / 60))
+      futureSeconds = futureSeconds - (futureHours * 3600) - (futureMinutes * 60)
+      line0String = str(futureDays) + " Days, " + f"{futureHours:02d}" + ":" + f"{futureMinutes:02d}" + ":" + f"{futureSeconds:02d}"
+    else:
+      line0String = str(futureDays) + " Days "
+    line1String = "Until " + thisHolidayName
+    printMsg(line0String, line0String)
 
-        thisGuestNumber = thisGuestNumber + 1
+    sleep(sleepTime)
+    futureTime = getFutureTime(thisHolidayDate)
 
-        if thisGuestNumber >= len(guestList):
-          thisGuestNumber = 0
+  while futureDays == 0:
+    futureSeconds = futureTime.seconds
+    futureHours = int(math.floor(futureSeconds / 3600))
+    futureMinutes = int(math.floor((futureSeconds - (futureHours * 3600)) / 60))
+    futureSeconds = futureSeconds - (futureHours * 3600) - (futureMinutes * 60)
+    line0String = f"{futureHours:1d}" + " hours, " + f"{futureMinutes:02d}" + ":" + f"{futureSeconds:02d}"
+    line1String = "Until " + thisHolidayName
+    printMsg(line0String, line0String)
 
-        time.sleep(2)
+    sleep(sleepTime)
+    futureTime = getFutureTime(thisHolidayDate)
 
-    while (now < newyears):
-        now = datetime.now()
-        diff = christmas - now
-        days = diff.days
-        seconds = int(diff.seconds)
-        hours = int(math.floor(seconds / 3600))
-        minutes = int(math.floor((seconds - (hours * 3600)) / 60))
-        secs = seconds - (hours * 3600) - (minutes * 60)
-        strHours = str(hours)
-        strMinutes = str(minutes)
-        strSeconds = str(secs)
-
-        if secs < 10:
-            strSeconds = "0" + strSeconds
-        if minutes < 10:
-            strMinutes = "0" + strMinutes
-        if hours < 10:
-            strHours = " " + strHours
-
-        line0message = str(days) + " Days " + strHours + ":" + strMinutes + ":" + strSeconds
-        LCD1602.write(0, 0, line0message)
-        LCD1602.write(1, 1, 'until New Years')
-        time.sleep(.2)
-
-def destroy():
-    LCD1602.write(0, 0, 'Good bye,       ')
-    LCD1602.write(1, 1, ' for now...     ')
-    pass
-
-if __name__ == "__main__":
-	try:
-		setup()
-		while True:
-			pass
-	except KeyboardInterrupt:
-		destroy()
+  while futureDays == -1:
+    futureSeconds = futureTime.seconds
+    futureHours = int(math.floor(futureSeconds / 3600))
+    futureMinutes = int(math.floor((futureSeconds - (futureHours * 3600)) / 60))
+    futureSeconds = futureSeconds - (futureHours * 3600) - (futureMinutes * 60)
+    line0String = "Happy " + thisHolidayName
+    for thisGuest in guestList:
+      printMsg(line0String, thisGuest)
+      sleep(sleepTime * 10)
+    futureTime = getFutureTime(thisHolidayDate)

@@ -55,7 +55,7 @@ The Pi will reboot so log back in with `ssh pi@xmaspi.local`
 Next order of business is get a ssh key. (Take all defaults)
 
 ```
-ssh-keygen
+ssh-keygen -b 4096 -t RSA
 ```
 Now, log out of the session with `exit` and copy the public key on your linux based machine to the RaspberryPi, so you don't have to use a password each time you log in.
 
@@ -135,10 +135,10 @@ wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/m
 sudo python3 raspi-blinka.py
 ```
 select Y for any prompts.
-after the RaspberryPi has rebooted, run this Test to confirm all the interfaces were installed and enabled
 
 The [I&#x00B2;C (Inter-Integrated Circuit)](https://en.wikipedia.org/wiki/I%C2%B2C) and spi interfaces should now be installed and enabled.
 
+After the RaspberryPi has rebooted, run this Test to confirm all the interfaces were installed and enabled
 
 You can run the following command to verify:
 ```
@@ -180,7 +180,8 @@ all of the non "--" entries represent a device detected.
 
 ```
 sudo pip3 install \
-     adafruit_character_lcd
+     adafruit_character_lcd \
+     adafruit-circuitpython-charlcd \
      adafruit_mcp230xx \
      adafruit_bus_device
 ```
