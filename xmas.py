@@ -29,7 +29,6 @@ def printMsg(line0, line1):
     print(line0)
     print(line1)
     print("")
-    sleep(5)
 
 if LCDScreen:
   try:
@@ -70,8 +69,6 @@ myHolidays.pop_named("Juneteenth")
 myHolidays.pop_named("Independence")
 myHolidays.pop_named("Labor")
 myHolidays.pop_named("Veterans")
-# print("Remove thisNewYears")
-# print(date(thisYear,1,1))
 
 myHolidays.pop(datetime.date(thisYear, 1,  1))
 myHolidays[datetime.date(thisYear, 10,  31)] = "Halloween" 
@@ -89,6 +86,7 @@ for thisHolidayDate, thisHolidayName in sorted(myHolidays.items()):
   print(thisHolidayDate, thisHolidayName)
 
 for thisHolidayDate, thisHolidayName in sorted(myHolidays.items()):
+  print(thisHolidayDate, thisHolidayName)
   getFutureTime(thisHolidayDate)
   futureTime = getFutureTime(thisHolidayDate)
 
@@ -106,7 +104,6 @@ for thisHolidayDate, thisHolidayName in sorted(myHolidays.items()):
     line1String = "Until " + thisHolidayName
     printMsg(line0String, line1String)
 
-    print(sleepTime)
     sleep(sleepTime)
     futureTime = getFutureTime(thisHolidayDate)
 
