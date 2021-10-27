@@ -1,8 +1,12 @@
 LCDScreen = True
+sleepTime = 0.2
 try:
   import LCD1602
+  print("import OK")
 except:
-    LCDScreen = False
+  print("import no bueno")
+  sleepTime = 2
+  LCDScreen = False
 
 from datetime import date, time
 import datetime
@@ -26,8 +30,6 @@ def printMsg(line0, line1):
     print(line1)
     print("")
     sleep(5)
-
-sleepTime = 2
 
 if LCDScreen:
   try:
@@ -104,6 +106,7 @@ for thisHolidayDate, thisHolidayName in sorted(myHolidays.items()):
     line1String = "Until " + thisHolidayName
     printMsg(line0String, line1String)
 
+    print(sleepTime)
     sleep(sleepTime)
     futureTime = getFutureTime(thisHolidayDate)
 
