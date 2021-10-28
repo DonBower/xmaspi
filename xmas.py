@@ -82,11 +82,27 @@ def getFutureTime(thisHolidayDate):
   timeDifference = holidayDateTime - thisMoment
   return timeDifference
 
-for thisHolidayDate, thisHolidayName in sorted(myHolidays.items()):
-  print(thisHolidayDate, thisHolidayName)
+def getColorScheme(holidayName):
+  if holidayName == "Holloween":
+    return ["Orange", "Black"]
+  if holidayName == "Thanksgiving":
+    return ["Yellow", "Green"]
+  if holidayName == "Christmas Day":
+    return ["Red", "Green"]
+  if holidayName == "St. Valentine's Day":
+    return ["White", "Red"]
+  if holidayName == "Easter":
+    return ["White", "Blue"]
+  return ["White", "Black"]
+
 
 for thisHolidayDate, thisHolidayName in sorted(myHolidays.items()):
-  print(thisHolidayDate, thisHolidayName)
+  thisColorScheme = getColorScheme(thisHolidayName)
+  print(thisHolidayDate, thisHolidayName, thisColorScheme[0], thisColorScheme[1])
+
+for thisHolidayDate, thisHolidayName in sorted(myHolidays.items()):
+  thisColorScheme = getColorScheme(thisHolidayName)
+  print(thisHolidayDate, thisHolidayName, thisColorScheme[0], thisColorScheme[1])
   getFutureTime(thisHolidayDate)
   futureTime = getFutureTime(thisHolidayDate)
 
