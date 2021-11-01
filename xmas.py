@@ -117,7 +117,10 @@ for thisHolidayDate, thisHolidayName in sorted(myHolidays.items()):
       futureHours = int(math.floor(futureSeconds / 3600))
       futureMinutes = int(math.floor((futureSeconds - (futureHours * 3600)) / 60))
       futureSeconds = futureSeconds - (futureHours * 3600) - (futureMinutes * 60)
-      line0String = str(futureDays) + " Days, " + f"{futureHours:02d}" + ":" + f"{futureMinutes:02d}" + ":" + f"{futureSeconds:02d}"
+      if futureDays == 1:
+        line0String = str(futureDays) + " Day, " + f"{futureHours:02d}" + ":" + f"{futureMinutes:02d}" + ":" + f"{futureSeconds:02d}"
+      else:
+        line0String = str(futureDays) + " Days, " + f"{futureHours:02d}" + ":" + f"{futureMinutes:02d}" + ":" + f"{futureSeconds:02d}"
     else:
       line0String = str(futureDays) + " Days "
     line1String = "Until " + thisHolidayName
