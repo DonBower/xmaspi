@@ -22,6 +22,9 @@ def printMsg(line0, line1):
   if line0 == "Happy Test Day":
     line0 = "Merry Test Day"
 
+  if line1 == "Until Thanksgiving":
+    line1 = "til Thanksgiving"
+
   if LCDScreen:
     LCD1602.write(0, 0, line0)
     LCD1602.write(0, 1, line1)
@@ -109,7 +112,7 @@ for thisHolidayDate, thisHolidayName in sorted(myHolidays.items()):
   futureDays = int(futureTime.days)
 
   while futureDays > 0:
-    if futureDays < 100:
+    if futureDays < 10:
       futureSeconds = futureTime.seconds
       futureHours = int(math.floor(futureSeconds / 3600))
       futureMinutes = int(math.floor((futureSeconds - (futureHours * 3600)) / 60))
