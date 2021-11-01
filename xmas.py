@@ -123,12 +123,15 @@ for thisHolidayDate, thisHolidayName in sorted(myHolidays.items()):
         line0String = str(futureDays) + " Days, " + f"{futureHours:02d}" + ":" + f"{futureMinutes:02d}" + ":" + f"{futureSeconds:02d}"
     else:
       line0String = str(futureDays) + " Days          "
-      sleep(3600)
 
     line1String = "Until " + thisHolidayName
     printMsg(line0String, line1String)
 
-    sleep(sleepTime)
+    if futureDays >= 9:
+      sleep(3600)
+    else:
+      sleep(sleepTime)
+  
     futureTime = getFutureTime(thisHolidayDate)
 
   while futureDays == 0:
